@@ -29,19 +29,30 @@ $borderThin: 1px solid black;
 
   .col1 {
     width: $fontSizeMd * 8;
-
     border-right: $borderThin;
+
+    @media (max-width: 480px) {
+      width: 30%;
+    }
   }
 
   .col2 {
     width: $fontSizeMd * 17;
     border-right: $borderThin;
+
+    @media (max-width: 480px) {
+      width: 60%;
+    }
   }
 
   .col3 {
     width: 2.5rem;
 
     @include flexCenter();
+
+    @media (max-width: 480px) {
+      width: 10%;
+    }
   }
 
   .dataBox {
@@ -160,11 +171,4 @@ $borderThin: 1px solid black;
 
 .spaceBetween {
   justify-content: space-between;
-}
-
-.r1c2 {
-  display: flex;
-  height: 100%;
-  flex-direction: row;
-  border: 1px solid green;
 }
