@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 
 import './DepartureFDE.scss';
-import { ReactComponent as UpArrow } from '../images/up-arrow.svg';
+// import { ReactComponent as UpArrow } from '../images/up-arrow.svg';
+import upArrow from '../images/up-arrow.png';
 
 function DepartureFDE({
   acId,
@@ -36,7 +37,8 @@ function DepartureFDE({
           <div className={clsx('flexRow')}>
             <div className={clsx('dataBox', 'assignedAlt')}>{assignedAlt}</div>
             <div className={clsx('dataBox', 'arrow')}>
-              <UpArrow />
+              {/* <UpArrow /> */}
+              <img src={upArrow} className="arrowPng" alt="departureArrow" />
             </div>
             <div className={clsx('dataBox', 'additionalInfo')}>
               {additionalInfo}
