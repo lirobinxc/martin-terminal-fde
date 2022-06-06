@@ -13,23 +13,25 @@ export function genAircraftType() {
 
   const num1to10 = _.random(1, 10);
 
+  // Generate WTC
   if (num1to10 > 8) {
     wtc = 'H';
-  } else if (num1to10 > 2) {
+  } else if (num1to10 > 1) {
     wtc = 'M';
   } else {
     wtc = 'L';
   }
 
-  if (num1to10 > 3) {
+  // Generate equipment type
+  if (num1to10 > 2) {
     equipment = _.sample(['X', 'R', 'G']);
   } else {
     equipment = 'S';
   }
 
   if (wtc === 'H') type = 'jet';
-  if (wtc === 'M' && num1to10 > 3) type = 'jet';
-  if (wtc === 'M' && num1to10 <= 3) type = 'turboprop';
+  if (wtc === 'M' && num1to10 > 4) type = 'jet';
+  if (wtc === 'M' && num1to10 <= 4) type = 'turboprop';
   if (wtc === 'L' && num1to10 > 4) type = 'turboprop';
   if (wtc === 'L' && num1to10 <= 4) type = 'piston';
 

@@ -3,10 +3,25 @@ import { genAircraftType } from './genAircraftType';
 import { genCallsign } from './genCallsign';
 import { genRoute } from './genRoute';
 
-let currentTime = 1200;
+let currentHour = _.sample([12, 13, 14, 15, 16, 17, 18]);
+let currentMinute = 0;
 
 export function genFdeData(runwayId) {
-  currentTime = currentTime + _.random(1, 2);
+  // Set timestamp
+  currentMinute = currentMinute + _.sample([1, 1, 1, 1, 2, 2, 3]);
+
+  if (currentMinute > 59) {
+    currentHour = currentHour + 1;
+    currentMinute = currentMinute - 60;
+  }
+
+  if (currentHour > 23) currentHour = 0;
+
+  const currentTime = `${String(currentHour).padStart(2, '0')}${String(
+    currentMinute
+  ).padStart(2, '0')}`;
+
+  // Init aircraft and route
   const ac = genAircraftType();
   const route = genRoute();
 
@@ -53,13 +68,28 @@ export function genFdeData(runwayId) {
       }
     }
   }
-  if (runwayId === '09') {
+  if (runwayId === '27') {
     if (ac.type === 'turboprop' || ac.type === 'piston') {
-      if (['CYVR', 'CYQD', 'CYXE'].includes(route.destination)) {
-        assignedHeading = '060';
+      if (
+        ['CYQD', 'CYXE', 'CYLW', 'KSFO', 'KDEN', 'CYFF', 'CYGG'].includes(
+          route.destination
+        )
+      ) {
+        assignedHeading = '300';
       }
-      if (['KMSP', 'CYYZ', 'KORD'].includes(route.destination)) {
-        assignedHeading = '120';
+      if (
+        [
+          'KMSP',
+          'CYYZ',
+          'KORD',
+          'CYBR',
+          'CYVR',
+          'CYLW',
+          'KSFO',
+          'KDEN',
+        ].includes(route.destination)
+      ) {
+        assignedHeading = '240';
       }
     }
   }

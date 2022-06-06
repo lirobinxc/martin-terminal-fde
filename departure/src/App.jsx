@@ -9,7 +9,7 @@ import { genFdeData } from './functions/genFdeData';
 
 const defaultDepSequence = [];
 for (let i = 1; i < 7; i++) {
-  defaultDepSequence.push(genFdeData('09'));
+  defaultDepSequence.push(genFdeData(localStorage.getItem('runwayId') || '09'));
 }
 
 function App() {
@@ -17,6 +17,7 @@ function App() {
   const [options, setOptions] = useState({
     totalItems: localStorage.getItem('totalItems') || 6,
     timedAdd: localStorage.getItem('timedAdd') || 6,
+    runwayId: localStorage.getItem('runwayId') || '09',
   });
   const [modalIsOpen, setIsOpen] = useState(false);
   const [timedAddEnabled, setTimedAddEnabled] = useState(false);
@@ -24,7 +25,7 @@ function App() {
   useEffect(() => {
     refreshSeq();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [options.totalItems]);
+  }, [options.totalItems, options.runwayId]);
 
   function openModal() {
     setIsOpen(true);
@@ -36,7 +37,7 @@ function App() {
   function refreshSeq() {
     const newSeq = [];
     for (let i = 0; i < options.totalItems; i++) {
-      newSeq.push(genFdeData('09'));
+      newSeq.push(genFdeData(options.runwayId));
     }
 
     setSequence(newSeq);
@@ -62,6 +63,13 @@ function App() {
     setOptions({ ...options, timedAdd: value });
   }
 
+  function setRunwayId(e) {
+    let value = e.target.value;
+
+    localStorage.setItem('runwayId', value);
+    setOptions({ ...options, runwayId: value });
+  }
+
   function handleRemove(acId) {
     console.log('delete', acId);
     const newSeq = sequence.filter((el) => el.acId !== acId);
@@ -74,7 +82,7 @@ function App() {
     console.log('ADDED NEW STRIP');
 
     const newSeq = _.cloneDeep(sequence);
-    newSeq.push(genFdeData('09'));
+    newSeq.push(genFdeData(options.runwayId));
 
     setSequence(newSeq);
   }, options.timedAdd * 1000);
@@ -95,6 +103,17 @@ function App() {
               checked={timedAddEnabled}
               onChange={() => setTimedAddEnabled(!timedAddEnabled)}
             />
+          </label>
+          <label>
+            <select
+              name="rwy"
+              id="rwy"
+              onChange={setRunwayId}
+              defaultValue={options.runwayId}
+            >
+              <option value="09">RWY 09</option>
+              <option value="27">RWY 27</option>
+            </select>
           </label>
           <button onClick={openModal}>Options</button>
         </div>
@@ -117,6 +136,7 @@ function App() {
             <form>
               Starting # of strips (0-99):{' '}
               <input
+                type="number"
                 name="totalItems"
                 defaultValue={options.totalItems}
                 onChange={setTotalItems}
@@ -126,6 +146,7 @@ function App() {
               <label>
                 Timed add interval (min 1 second){' '}
                 <input
+                  type="number"
                   name="timedAdd"
                   defaultValue={options.timedAdd}
                   onChange={setTimedAdd}
