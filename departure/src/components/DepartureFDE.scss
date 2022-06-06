@@ -100,10 +100,23 @@ $borderThin: 1px solid black;
     border-right: $borderThin;
     font-size: $fontSizeXl;
   }
+  .bgYellow {
+    background-color: #FFFF94;
+  }
 
   .arrow {
+    cursor: pointer;
     width: 10%;
     font-size: $fontSizeXl;
+
+
+    &:hover {
+      background-color: darkgray;
+    }
+
+    &:active {
+      font-size: $fontSizeLg;
+    }
   }
 
   .arrowPng {

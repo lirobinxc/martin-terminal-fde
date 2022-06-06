@@ -96,12 +96,16 @@ export function genFdeData(runwayId) {
     }
   }
 
+  // Init assigned altitude
+  let assignedAlt = 70
+  if (assignedHeading) assignedAlt = 40
+
   const fde = {
     debug: ac,
     acId: genCallsign(),
     acType: ac.fullName,
     filedTAS,
-    // assignedAlt,
+    assignedAlt,
     // additionalInfo,
     assignedHeading,
     runwayId,

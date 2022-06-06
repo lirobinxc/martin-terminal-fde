@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 
 import './DepartureFDE.scss';
@@ -21,6 +22,20 @@ function DepartureFDE({
   ETA,
   handleRemove,
 }) {
+  const [currentAlt, setCurrentAlt] = useState(assignedAlt)
+  const [isCorrectAlt, setIsCorrectAlt] = useState(false)
+
+  function handleClickAlt() {
+    setCurrentAlt(currentAlt + 10)
+  }
+
+  useEffect(() => {
+    if (currentAlt >= filedAlt || currentAlt >= 230) {
+      setIsCorrectAlt(true)
+    } else setIsCorrectAlt(false)
+  }, [currentAlt])
+  
+  
   return (
     <section className={clsx('FlightStrip', 'flexCol')}>
       <div className={clsx('topRow', 'flexRow')}>
@@ -35,8 +50,8 @@ function DepartureFDE({
         </div>
         <div className={clsx('col', 'col2')}>
           <div className={clsx('flexRow')}>
-            <div className={clsx('dataBox', 'assignedAlt')}>{assignedAlt}</div>
-            <div className={clsx('dataBox', 'arrow')}>
+            <div className={clsx('dataBox', 'assignedAlt', {bgYellow: !isCorrectAlt})}>{currentAlt}</div>
+            <div className={clsx('dataBox', 'arrow')} onClick={handleClickAlt}>
               {/* <UpArrow /> */}
               <img src={upArrow} className="arrowPng" alt="departureArrow" />
             </div>

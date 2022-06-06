@@ -23,7 +23,7 @@ export function genAircraftType() {
   }
 
   // Generate equipment type
-  if (num1to10 > 2) {
+  if (num1to10 > 1) {
     equipment = _.sample(['X', 'R', 'G']);
   } else {
     equipment = 'S';
