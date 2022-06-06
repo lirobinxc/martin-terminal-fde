@@ -45,7 +45,7 @@ const routes = {
       },
       {
         route: 'J503 BRUNS',
-        destination: 'CYYC',
+        destination: 'CYOW',
       },
       {
         route: 'J503',

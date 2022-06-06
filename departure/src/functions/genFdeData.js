@@ -21,9 +21,8 @@ export function genFdeData(runwayId) {
     currentMinute
   ).padStart(2, '0')}`;
 
-  // Init aircraft and route
+  // Init aircraft
   const ac = genAircraftType();
-  const route = genRoute();
 
   // Set filed speed and altitude
   let filedTAS = 999;
@@ -41,12 +40,15 @@ export function genFdeData(runwayId) {
     filedAlt = _.sample([330, 310]);
   }
 
+  // Init route
+  const route = genRoute(filedAlt, ac.equipment);
+
   // Assigned heading
   let assignedHeading;
   if (runwayId === '09') {
     if (ac.type === 'turboprop' || ac.type === 'piston') {
       if (
-        ['CYQD', 'CYXE', 'CYLW', 'KSFO', 'KDEN', 'CYFF', 'CYGG'].includes(
+        ['CYQD', 'CYXE', 'CYLW', 'KSFO', 'KDEN', 'CYFF', 'CYGG', 'CYOW'].includes(
           route.destination
         )
       ) {
@@ -71,7 +73,7 @@ export function genFdeData(runwayId) {
   if (runwayId === '27') {
     if (ac.type === 'turboprop' || ac.type === 'piston') {
       if (
-        ['CYQD', 'CYXE', 'CYLW', 'KSFO', 'KDEN', 'CYFF', 'CYGG'].includes(
+        ['CYQD', 'CYXE', 'CYLW', 'KSFO', 'KDEN', 'CYFF', 'CYGG', 'CYOW'].includes(
           route.destination
         )
       ) {
