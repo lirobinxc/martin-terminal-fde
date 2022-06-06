@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/martin-terminal-fde/static/css/main.f18d745b.css",
-    "main.js": "/martin-terminal-fde/static/js/main.f47d4dad.js",
+    "main.js": "/martin-terminal-fde/static/js/main.734b858f.js",
     "static/js/787.b4b09b0d.chunk.js": "/martin-terminal-fde/static/js/787.b4b09b0d.chunk.js",
     "index.html": "/martin-terminal-fde/index.html",
     "main.f18d745b.css.map": "/martin-terminal-fde/static/css/main.f18d745b.css.map",
-    "main.f47d4dad.js.map": "/martin-terminal-fde/static/js/main.f47d4dad.js.map",
+    "main.734b858f.js.map": "/martin-terminal-fde/static/js/main.734b858f.js.map",
     "787.b4b09b0d.chunk.js.map": "/martin-terminal-fde/static/js/787.b4b09b0d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f18d745b.css",
-    "static/js/main.f47d4dad.js"
+    "static/js/main.734b858f.js"
   ]
 }
