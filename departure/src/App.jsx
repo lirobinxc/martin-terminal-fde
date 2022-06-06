@@ -91,7 +91,7 @@ function App() {
   return (
     <div className="App">
       <div className="headerRow">
-        <h2>Departure EXCDS Practice v1.1</h2>
+        <h2>Departure EXCDS Practice v1.3</h2>
         <div className="optionsRow">
           <button className="refreshButton" onClick={refreshSeq}>
             Refresh
@@ -153,14 +153,15 @@ function App() {
                 />
               </label>
             </form>
-            <a
-              href="https://github.com/lirobinxc"
-              target={'_blank'}
-              rel="noreferrer"
-              style={{ alignSelf: 'center', paddingTop: '50vh' }}
-            >
-              Github @lirobinxc
-            </a>
+            <div style={{ alignSelf: 'center', paddingTop: '50vh' }}>
+              <a
+                href="https://github.com/lirobinxc"
+                target={'_blank'}
+                rel="noreferrer"
+              >
+                Github @lirobinxc
+              </a>
+            </div>
           </div>
         </Modal>
       </div>
